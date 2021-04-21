@@ -1,0 +1,242 @@
+\documentclass[12pt, a4paper]{amsart}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{url}
+%\usepackage{tikz}
+\newtheorem{lemma}{\bf Lemma}[section]
+\newtheorem{definition}[lemma]{\bf Definition}
+\newtheorem{proposition}[lemma]{\bf Proposition}
+\parindent = 0mm
+\parskip = 2mm
+\begin{document}
+\title{Some notes on the Hadwiger conjecture}
+\author{D.Z., \today}
+%\address{Swiss Armed Forces, CH-3003 Bern, Switzerland}
+%\email{dominic.zypen@gmail.com}
+%----------------------
+\maketitle
+%----------------------
+\section{Introductory remarks}
+Hugo Hadwiger formulated his conjecture in 1943. 
+Some historical background on this conjecture can be
+found on Wikipedia using the search terms 
+\begin{quote}{\tt wiki hadwiger conjecture graph theory}
+\end{quote}
+Erd\H{o}s considered this conjecture to be one of the 
+top three problems he would like to see solved in his 
+lifetime.
+%----------------------
+\section{Basic notions}
+\subsection{Graphs} For any set $X$ we let $$[X]^2 = \big\{\{x,y\}: (x, y\in X)
+\land (x\neq y)\big\}.$$ A {\em graph} is a tuple $G =(V,E)$
+where $E \subseteq [V]^2$. 
+
+If $G=(V,E)$ is a graph and $v\in V$, then the {\em neighborhood}
+of $v$ is defined by $$N(v) = \{w\in V:\{v,w\}\in E\}.$$ Note
+that we always have $v\notin N(v)$. The cardinal 
+$\text{card}(N(v)) = |N(v)|$ is said to be the {\em degree} of $v$,
+denoted by $\text{deg}(v)$.
+
+\subsection{(Induced) subgraphs} For $G=(V,E)$ and $S\subseteq V$
+we define the induced subgraph of $S$ by $$(S, E\cap [S]^2).$$
+For $v\in V$ we denote the induced subgraph on $V\setminus\{v\}$ by
+$G\setminus\{v\}$.
+
+
+\subsection{Hypergraphs} A {\em hypergraph} $H=(V,E)$ consists of a
+set $V$ and $E\subseteq {\mathcal P}(V)$, that is, $E$ 
+consists of subsets of $V$ of arbitrary size. Obviously,
+a graph is a special kind of hypergraph.
+
+\subsection{Colouring} We define a notion of colouring for {\em 
+hypergraphs} that agrees with the notion of graph coloring whenever
+the hypergraph at hand is a graph. Let $H=(V,E)$ be a hypergraph and 
+$\kappa\neq \emptyset$ 
+be a cardinal.
+Then a map $c:V\to \kappa$ is said to be a {\em colouring} if for
+every $e\in E$ with $|e|\geq 2$ we have that
+the restriction $c\restriction_e$ is non-constant. The {\em chromatic
+number} $\chi(H)$ of $H$ is the smallest cardinal $\kappa$ such there
+is a colouring $c:V\to \kappa$.
+
+A few (non-trivial\footnote{Disclosure: I find them hard and couldn't
+do all, but some or all of these points could be trivial}) 
+things on hypergraph colouring:
+\begin{enumerate}
+\item If $\kappa$ is an infinite cardinal and $E$ is a collection 
+of subsets of cardinality $\kappa$, and also we have $|E| = \kappa$,
+then $\chi(\kappa, E) = 2$. 
+\item Let $\omega$ be the first infinite cardinal. Given $n\in 
+\omega\cup\{\omega\}$, is there $E\subseteq {\mathcal P}(\omega)$
+such that $\chi(\omega, E) = n$?
+\item Determine $\chi(\mathbb{N}, E)$ where 
+\begin{enumerate}
+\item $E = \big\{\{a,b,a+b\}: a, b\in \mathbb{N}\big\}$,
+\item $E = $ collection of subsets of $\mathbb{N}$ such 
+that its members are pairwise relatively prime.
+\end{enumerate}
+\item What is $\chi(\mathbb{R}, E)$ where $E$ is the collection
+	of infinite Lebesgue-measurable sets? (We have $|E| >
+		2^{\aleph_0} = |\mathbb{R}|$ if I am not mistaken.)
+\end{enumerate}
+\subsection{Point contraction} If $v\neq w\in V$ we can ``contract'' 
+$v$ and $w$ in the following way. Consider $V' = V\setminus \{w\}$
+and set $$E' = (E \cap [V']^2) \cup \big\{\{v,x\}: x\in N(w)
+\setminus\{v\}\big\}.$$
+Then we denote the graph $(V', E')$ by $G/\{v,w\}$.
+%----------------------
+\section{Connectedness}
+Usually, a graph $G=(V,E)$ is said to be {\em connected} if there is
+a path between any two vertices (points) $v, w\in V$. The following
+notion of connectedness seems more general, and it can be
+used in the context of hypergraphs too:
+\begin{definition}
+$G = (V,E)$ is {\em connected} if for all $X\subseteq V$ with 
+$\emptyset \neq X \neq V$ there is $e\in E$ with 
+	$$X \cap e \neq \emptyset \neq (V\setminus X)\cap e.$$
+\end{definition}
+I was convinced that for infinite graphs the above definition
+was {\em weaker}, but it turns out there is a short inductive
+argument showing that this is equivalent to the path definition
+we are used to.
+%----------------------
+\section{Complete minors (no age requirement), and the Hadwiger number}
+\begin{definition}
+If $S, T$ are disjoint subsets of $V$ where $G=(V,E)$ is a graph,
+	we say $S,T$ are {\em connected to each other} if there
+	is $s\in S, t\in T$ such that $\{s,t\} \in E$.
+\end{definition}
+A {\em complete minor} of $G=(V,E)$ is a collection ${\mathcal S}$ 
+of {\em connected}, non-empty, subsets of $V$ such that
+\begin{enumerate}
+	\item whenever $S\neq T\in {\mathcal S}$ then $S\cap T = \emptyset$, and
+	\item whenever $S\neq T\in {\mathcal S}$ then $S, T$ are connected
+		to each other.
+\end{enumerate}
+The {\em Hadwiger number} $\eta(G)$ of a graph $G=(V,E)$ is the supremum
+of the cardinalities that a complete minor can have, i.e.
+$$\eta(G) = \sup\{|{\mathcal S}|: {\mathcal S}\subseteq {\mathcal P}(V) \text{ is
+a complete minor}\}.$$
+
+%----------------------
+\section{Hadwiger's conjecture}
+Hadiwger proposes the following easy connection between the
+chromatic number $\chi(G)$ of a graph, and its Hadwiger number:
+
+\vspace*{2mm}
+\fbox{{\bf Hadwiger's conjecture.} $\chi(G) \leq \eta(G)$ for all graphs $G$.}
+
+Some remarks:
+
+\begin{enumerate}
+\item As soon as $E \neq \emptyset$ for a graph $G=(V,E)$,
+	we have $\eta(G) \geq 2.$
+\item Note that even for $\chi(G)=2$, the value of $\eta(G)$ can 
+	be arbitrarily large: Let $\kappa\geq 2$ be a cardinal (finite
+		or infinite). Then $\eta(K_{\kappa,\kappa}) = \kappa$
+		where $K_{\kappa, \kappa}$ is the complete bipartite
+		graph on $2\cdot \kappa$ points. Obviously
+		$\chi(K_{\kappa,\kappa}) = 2$.
+\end{enumerate}
+
+%----------------------
+\section{Hadwiger's conjecture in the infinite}
+The situation for graphs with infinite chromatic number is much
+clearer than for finite graphs\footnote{this also covers infinite graphs 
+with {\em finite chromatic number} because of the De Bruijn - Erd\H{o}s
+theorem stating every such graph has a {\em finite} subgraph
+with the same chromatic number}.
+\begin{proposition} If $G=(V,E)$ is such that $\chi(G)\geq \aleph_0$, 
+	then $\chi(G)\leq \eta(G)$.
+\end{proposition}
+This is a corollary of the main result of 
+\url{https://arxiv.org/pdf/1312.2829.pdf}.
+
+However, we can reformulate Hadwiger's conjecture as follows:
+
+{\bf Hadwiger Version 2.} Any graph $G$ has a complete minor of 
+cardinality $\chi(G)$.
+
+Version 2 is equivalent to the original statement for FINITE graphs,
+but is is {\em false} for graphs with infinite chromatic number:
+
+Let $G = \bigcup_{n\in \mathbb{N}}K_n$ be the disjoint union of copies of
+the complete graph $K_n$. Then $\chi(G)$ is infinite, but $G$ has
+only finite complete minors (but of arbitrarily large finite size).
+
+%----------------------
+\section{Properties of a minimal hypothetical counterexample}
+\subsection{Criticality} A graph $G=(V,E)$ is said to be {\em critical}
+if $\chi(G\setminus \{v\}) < \chi(G)$ for all $v\in V$.
+For the remainder of this section let $n_0$ be the {\em minimum
+cardinality} $|V|$ of any graph $G_0=(V,E)$ that is a counterexample
+to Hadwiger, i.e. has $$\eta(G_0) < \chi(G_0).$$
+\begin{proposition} 
+$G_0$ is critical.
+\end{proposition}
+{\em Proof.} Otherwise, take $v\in V$ with $\chi(G_0\setminus 
+\{v\} = \chi(G_0)$.
+Then $\eta(G_0\setminus\{v\}) \leq \eta(G_0) < \chi(G_0) = \chi(G_0
+	\setminus\{v\}$ so that $G_0\setminus \{v\}$ is
+	another counterexample to Hadwiger with $|V\setminus\{v\}| =
+	n_0-1 < n_0$, contradicting minimality of $n_0$. 
+	\hfill{$\Box$}
+
+Note that every critical graph is connected.
+
+Now we revisit contractions (see ``Basic notions''). 
+
+Let $v\neq w\in V$ such that $\{v,w\}\notin E$.
+\begin{proposition}
+If $G$ is any graph and $v\neq w\in V$ with $\{v,w\}\notin E$, then
+	$$\chi(G/\{v,w\}) \geq \chi(G).$$
+\end{proposition}
+
+Let's go back to our minimal Hadwiger counterexample $G_0$.
+
+\begin{proposition} \label{contractprop}
+Whenever $v\neq w \in V(G_0)$ and $\{v,w\}\notin E$, then
+$\eta(G_0/\{v,w\}) > \eta(G_0)$.
+\end{proposition}
+{\em Proof.} Suppose $\eta(G_0/\{v,w\}) \leq \eta(G_0)$. Then since
+$\chi(G_0/\{v,w\} \geq \chi(G_0)$ we get $\eta(G_0/\{v,w\}) < 
+\chi(G_0/\{v,w\})$, so $G_0/\{v,w\}$ is a Hadwiger counterexample
+with a smaller number of vertices than $G_0$, contradicting minimality.
+\hfill{$\Box$}.
+
+\begin{proposition} \label{edgeprop}
+If $G=(V,E)$ is any graph and $v\neq w\in V$ with $\{v,w\} \notin E$,
+then $$\eta(G/\{v,w\}) \leq \eta(G \cup \{v,w\}),$$
+where $G\cup \{v,w\}$ denotes the graph $(V, E\cup\{v,w\})$.
+\end{proposition}
+
+Together, propositions \ref{contractprop} and \ref{edgeprop}
+imply that $G_0$ must have the following property:
+\begin{quote}
+	(E): Whenever a new edge is added in $G_0$, then the
+	Hadwiger number increases.
+\end{quote}
+
+So $G_0$ has property (E), and it is critical. I asked
+Paul Seymour\footnote{Quite a famous combinatorialist, we exchange
+e-mail like once or twice a year} to come up with {\em any} finite 
+critical graph $G_1$ having property (E), and he wrote after
+a while that he wasn't able to.
+
+If some such $G_1$ could be found, this wouldn't refute Hadwiger
+but could give insight as to what kind of examples could be interesting
+regarding Hadwiger.
+
+Any proof that shows no critical graph with property (E) can exist
+would prove the Hadwiger conjecture.
+
+%---------------------------
+\section{Extending to hypergraphs?}
+We can define connected hypergraphs, see ``Basic notions'',
+and we can extend the concept of colouring to hypergraphs.
+Maybe we can define a complete minor in a hypergraph.
+
+{\bf Question.} Is there a cool way to formulate Hadwiger's conjecture
+in terms of hypergraphs?
+\end{document}
