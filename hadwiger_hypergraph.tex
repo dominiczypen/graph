@@ -1,0 +1,64 @@
+\documentclass[12pt, a4paper]{amsart}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{url}
+%\usepackage{tikz}
+\newtheorem{lemma}{\bf Lemma}[section]
+\newtheorem{definition}[lemma]{\bf Definition}
+\newtheorem{proposition}[lemma]{\bf Proposition}
+\parindent = 0mm
+\parskip = 2mm
+\begin{document}
+\title{Hadwiger's conjecture for hypergraphs}
+\author{D.Z., \today}
+%\address{Swiss Armed Forces, CH-3003 Bern, Switzerland}
+%\email{dominic.zypen@gmail.com}
+%----------------------
+\maketitle
+%----------------------
+\section{Basic notions}
+\subsection{Hypergraphs} A {\em hypergraph} $H=(V,E)$ consists of a
+set $V$ and $E\subseteq {\mathcal P}(V)$, that is, $E$ 
+consists of subsets of $V$ of arbitrary size. 
+
+If $H = (V,E)$ is a hypergraph and $S\subseteq V$, we define
+$$E|_S = \{e\cap S: (e\in E) \land (e\cap S \neq \emptyset)\}$$
+and call $(S, E|_S)$ the {\em induced sub-hypergraph} of $H$.
+
+
+\subsection{Connectedness} A hypergraph $H=(V,E)$ is {\em connected}
+if for all $X \subseteq V$ with $\emptyset \neq X \neq V$ there
+is $e\in E$ such that $$e\cap X \neq \emptyset \neq e
+\cap (V\setminus X).$$
+
+\subsection{Colouring} Let $H=(V,E)$ be a hypergraph and 
+$\kappa\neq \emptyset$ be a cardinal.
+Then a map $c:V\to \kappa$ is said to be a {\em colouring} if for
+every $e\in E$ with $|e|\geq 2$ we have that
+the restriction $c\restriction_e$ is non-constant. The {\em chromatic
+number} $\chi(H)$ of $H$ is the smallest cardinal $\kappa$ such there
+is a colouring $c:V\to \kappa$.
+
+\subsection{Connected to each other}. If $H=(V,E)$ is a hypergraph
+and $S_1, S_2\subseteq V$ are disjoint, we say they are {\em connected
+to each other} if there is $e\in E$ such that $$e\cap S_1 \neq \emptyset
+\neq e\cap S_2.$$
+
+%----------------------------
+\section{A form of Hadwiger's conjecture for hypergraphs}
+
+Assume that $H=(V,E)$ is a hypergraph and let's assume 
+$V\neq \emptyset \neq E$ to avoid pathologies. Let $\kappa$ be a
+cardinal such that there is {\em no} colouring $c:V\to \kappa$. 
+Then there is a collection ${\mathcal S}$ of  mutually
+disjoint subsets with $|{\mathcal S}| = \kappa$ such that
+\begin{enumerate}
+	\item $(S, E|_S)$ is a connected hypergraph for each 
+		$S\in {\mathcal S}$, and 
+	\item whenever $S\neq T\in {\mathcal S}$ then $S, T$ are connected
+	to each other.
+\end{enumerate}
+(In the graph context, this amounts to saying that there
+is a complete minor of cardinality $\kappa$.)
+\end{document}
