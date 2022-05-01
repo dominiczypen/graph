@@ -1,0 +1,94 @@
+% Generated using vi
+% Author: Dominic van der Zypen
+% Last modified 2022-04-28
+
+\documentclass[12pt]{amsart}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\newtheorem{lemma}{\bf Lemma}[section]
+\newtheorem{observation}[lemma]{\bf Observation}
+\newcommand{\Pow}{{\mathcal P}}
+\newcommand{\beweisende}{{\hfill $\Box$}}
+\newcommand{\card}{{\mathrm{card}}}
+
+\begin{document}
+
+%...... title
+\title{Counterexample to a conjecture of Aharoni and Korman}
+
+%...... authors
+\author{Dominic van der Zypen}
+\address{Swiss Armed Forces, CH-3003 Bern,
+Switzerland}
+\email{dominic.zypen@gmail.com}
+
+%......MSC subject class
+\subjclass[2010]{05C15, 05C83}
+
+%...... Abstract...
+\begin{abstract}
+	In \cite{Ah}, Aharoni and Kleitman conjectured that
+	any hypergraph with finite edges only has a strongly
+	minimal cover. We present a counterexample.
+\end{abstract}
+\parindent = 0mm
+\parskip = 2 mm
+% . . . . . . . . . . . . . . . . .
+%--------------------------
+\maketitle
+
+\section{Definitions}
+
+A {\em hypergraph} is a pair $H=(V,E)$
+where $V$ is a set and $E\subseteq \Pow(V)$. The elements of
+$E$ are called {\em edges}.
+
+An {\em (edge) cover} of a hypergraph is a subset of 
+$K\subseteq E$ such that $\bigcup K = V$. 
+
+We say that a cover $M \subseteq E$ is {\em strongly minimal} if for every
+cover $K\subseteq E$ we have $\card(M\setminus K) \leq \card(K\setminus M)$.
+
+\section{The counterexample}
+Conjecture 5.4 of \cite{Ah} says that 
+any hypergraph with finite edges only has a strongly
+minimal cover. 
+\begin{lemma} Let $H= (\omega, E)$ where $E$ is the collection of 
+	finite subsets of $\omega$. Then $H$ has no strongly minimal
+	cover.
+\end{lemma}
+{\em Proof.} Let $K\subseteq E$ be any cover of $\omega$. We want to 
+show that $K$ is not strongly minimal. As $\bigcup K = \omega$, and $K$
+consists of finite subsets of $\omega$, we
+can pick two
+different non-empty elements $a, b\in K$. Let $$K^* = 
+\big(K \setminus \{a, b\}\big) \cup \{a \cup b\}.$$
+Clearly $K^*$ is a cover of $\omega$ and $K \setminus K^* = \{a, b\}$,
+but $K^*\setminus K$ is either empty (if $a\cup b$ already was an element 
+of $K$), or consists of $1$ element only, namely $a\cup b$. 
+
+So we have $$\card(K\setminus K^*) = 2 > 1 \geq \card(K^* \setminus K).$$
+Therefore, $K$ is not strongly minimal. \beweisende
+%--------------------------
+\section{Acknowledgements}
+I want to thank Jonathan David Farley for fruitful discussions
+on this topic.
+%................... bibliography .................
+{\footnotesize
+\begin{thebibliography}{99}
+%\bibitem{Er} \Erd, Paul, {\it On the combinatorial problems which I would
+%most like to see solved}, Combinatorica {\bf 1} (1981), 25--42.
+%\bibitem{Ha} Hugo Hadwiger, {\it \"Uber eine Klassifikation der 
+%Streckenkomplexe}, Vierteljschr.~Naturforsch.~Ges.~Z\"urich, 
+%{\bf 88} (1943), 133--143.
+\bibitem {Ah} Ron Aharoni, Vladimir Korman, {\it
+Greene-Kleitman's Theorem for Infinite Posets}, Order
+({\bf 9}) (1992),  245--253.
+%\bibitem{me} Dominic van der Zypen, {\it Hadwiger's conjecture for graphs with 
+%infinite chromatic number}, Advancement and Development in Mathematical
+%Sciences {\bf 4}, 2013, issue 1\&2, 1--4.
+%--------------------------
+\end{thebibliography}
+}
+\end{document}
