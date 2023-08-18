@@ -1,3 +1,5 @@
+% Created with ed
+
 \documentclass[12pt, a4paper]{amsart}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -11,11 +13,12 @@
 \parskip = 2mm
 \begin{document}
 \title{Hadwiger's conjecture for hypergraphs}
-\author{D.Z., \today}
+\author{Dominic van der Zypen, 2023-08-18}
 %\address{Swiss Armed Forces, CH-3003 Bern, Switzerland}
 %\email{dominic.zypen@gmail.com}
 %----------------------
 \maketitle
+\thispagestyle{empty}
 %----------------------
 \section{Basic notions}
 \subsection{Hypergraphs} A {\em hypergraph} $H=(V,E)$ consists of a
@@ -30,7 +33,8 @@ and call $(S, E|_S)$ the {\em induced sub-hypergraph} of $H$.
 \subsection{Connectedness} A hypergraph $H=(V,E)$ is {\em connected}
 if for all $X \subseteq V$ with $\emptyset \neq X \neq V$ there
 is $e\in E$ such that $$e\cap X \neq \emptyset \neq e
-\cap (V\setminus X).$$
+\cap (V\setminus X),$$
+so that we can imagine $e$ to "connect" $X$ and its complement $V\setminus X$.
 
 \subsection{Colouring} Let $H=(V,E)$ be a hypergraph and 
 $\kappa\neq \emptyset$ be a cardinal.
@@ -40,7 +44,7 @@ the restriction $c\restriction_e$ is non-constant. The {\em chromatic
 number} $\chi(H)$ of $H$ is the smallest cardinal $\kappa$ such there
 is a colouring $c:V\to \kappa$.
 
-\subsection{Connected to each other}. If $H=(V,E)$ is a hypergraph
+\subsection{Connected to each other} If $H=(V,E)$ is a hypergraph
 and $S_1, S_2\subseteq V$ are disjoint, we say they are {\em connected
 to each other} if there is $e\in E$ such that $$e\cap S_1 \neq \emptyset
 \neq e\cap S_2.$$
@@ -59,6 +63,4 @@ disjoint subsets with $|{\mathcal S}| = \kappa$ such that
 	\item whenever $S\neq T\in {\mathcal S}$ then $S, T$ are connected
 	to each other.
 \end{enumerate}
-(In the graph context, this amounts to saying that there
-is a complete minor of cardinality $\kappa$.)
 \end{document}
