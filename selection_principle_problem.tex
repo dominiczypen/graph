@@ -14,8 +14,7 @@
 \parindent = 0mm
 
 \begin{document}
-\title{A topological space with
-  ${\Omega \choose T}\neq {\Omega \choose \Gamma}$}
+\title{${\Omega \choose T}\neq {\Omega \choose \Gamma}$}
 \author{Dominic van der Zypen}
 \address{Federal Office of Borders and Customs Security,
 Taubenstrasse 16, CH-3003 Bern, Switzerland}
@@ -23,8 +22,8 @@ Taubenstrasse 16, CH-3003 Bern, Switzerland}
 
 \begin{abstract}
 We show that the selection principles ${\Omega\choose T}$
-and ${\Omega\choose\Gamma}$ are not equal by providing
-a space $(X,\tau)$ in which ${\Omega \choose T}$ holds,
+and ${\Omega\choose\Gamma}$ are not equal constructing a topological
+space $(X,\tau)$ that satisfies ${\Omega \choose T}$,
 but not ${\Omega \choose \Gamma}$. This answers a
 question from the year $2003$ in \cite{spm}.
 \end{abstract}
@@ -33,6 +32,9 @@ question from the year $2003$ in \cite{spm}.
 %-----------------
 \section{Introduction and definitions}
 Throughout this note, let $(X,\tau)$ be a topological space.
+\footnote{The definitions in this note also make sense in the
+broader context of hypergraphs $H=(V,E)$, where
+$V$ is any set and $E\subseteq\mathcal{P}(V)$.}
 \begin{definition} \label{cov}
  We say that ${\cal U} \subseteq \tau$ is an {\em open cover}, or
   {\em cover} for short, if \begin{enumerate}
@@ -40,7 +42,7 @@ Throughout this note, let $(X,\tau)$ be a topological space.
     \item $\bigcup {\cal U} = X$.
   \end{enumerate}
 \end{definition}
-For $x\in {\cal U}$ we set ${\cal U}_x = \{U \in {\cal U}:
+For $x\in X$ we set ${\cal U}_x = \{U \in {\cal U}:
 x\in U\}$ and call ${\cal U}_x$ the
 {\em star} of $x$ (with respect to ${\cal U}$).
 %  -  -  -  -  -  -
@@ -50,11 +52,11 @@ x\in U\}$ and call ${\cal U}_x$ the
   \item an $\omega$-cover if every finite subset of $X$ is contained
     in some member of ${\cal U}$,
   \item a $t$-cover if ${\cal U}$ is large, and
-    for all $x,y\in V$ at least one of the
+    for all $x,y\in X$ at least one of the
     sets ${\cal U}_x\setminus {\cal U}_y$ and ${\cal U}_y\setminus
     {\cal U}_x$ is finite, and
   \item a $\gamma$-cover if ${\cal U}$ is infinite, and
-    for every $x\in V$ the set ${\cal U}
+    for every $x\in X$ the set ${\cal U}
     \setminus {\cal U}_x$ is finite.
 \end{enumerate}
 Let $\Lambda, \Omega, T, \Gamma$ denote the collections
