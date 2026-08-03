@@ -1,3 +1,5 @@
+% Edited with vi
+
 \documentclass[12pt, a4paper]{amsart}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -7,13 +9,18 @@
 \newtheorem{lemma}{\bf Lemma}[section]
 \newtheorem{definition}[lemma]{\bf Definition}
 \newtheorem{proposition}[lemma]{\bf Proposition}
+%-------------- "let" substitution part! -------------
+\let\cal\mathcal
+\let\emptyset\varnothing
+%-------------- /"let" substitution part! -------------
 \parindent = 0mm
 \parskip = 2mm
 \begin{document}
 \title{Some notes on the Hadwiger conjecture}
-\author{D.Z., \today}
-%\address{Swiss Armed Forces, CH-3003 Bern, Switzerland}
-%\email{dominic.zypen@gmail.com}
+\author{Dominic van der Zypen, \today}
+\address{Federal office of border and customs security, Taubenstrasse 16,
+CH-3003 Bern, Switzerland}
+\email{dominic.zypen@gmail.com}
 %----------------------
 \maketitle
 %----------------------
@@ -52,7 +59,7 @@ a graph is a special kind of hypergraph.
 \subsection{Colouring} We define a notion of colouring for {\em 
 hypergraphs} that agrees with the notion of graph coloring whenever
 the hypergraph at hand is a graph. Let $H=(V,E)$ be a hypergraph and 
-$\kappa\neq \emptyset$ 
+$\kappa\neq \varnothing$ 
 be a cardinal.
 Then a map $c:V\to \kappa$ is said to be a {\em colouring} if for
 every $e\in E$ with $|e|\geq 2$ we have that
@@ -80,7 +87,7 @@ that its members are pairwise relatively prime.
 	of infinite Lebesgue-measurable sets? (We have $|E| >
 		2^{\aleph_0} = |\mathbb{R}|$ if I am not mistaken.)
 \end{enumerate}
-\subsection{Point contraction} If $v\neq w\in V$ we can ``contract'' 
+\subsection{Point contraction}\label{point_contraction} If $v\neq w\in V$ we can ``contract'' 
 $v$ and $w$ in the following way. Consider $V' = V\setminus \{w\}$
 and set $$E' = (E \cap [V']^2) \cup \big\{\{v,x\}: x\in N(w)
 \setminus\{v\}\big\}.$$
@@ -93,15 +100,15 @@ notion of connectedness seems more general, and it can be
 used in the context of hypergraphs too:
 \begin{definition}
 $G = (V,E)$ is {\em connected} if for all $X\subseteq V$ with 
-$\emptyset \neq X \neq V$ there is $e\in E$ with 
-	$$X \cap e \neq \emptyset \neq (V\setminus X)\cap e.$$
+$\varnothing \neq X \neq V$ there is $e\in E$ with 
+	$$X \cap e \neq \varnothing \neq (V\setminus X)\cap e.$$
 \end{definition}
 I was convinced that for infinite graphs the above definition
 was {\em weaker}, but it turns out there is a short inductive
 argument showing that this is equivalent to the path definition
 we are used to.
 %----------------------
-\section{Complete minors (no age requirement), and the Hadwiger number}
+\section{Complete minors and the Hadwiger number}
 \begin{definition}
 If $S, T$ are disjoint subsets of $V$ where $G=(V,E)$ is a graph,
 	we say $S,T$ are {\em connected to each other} if there
@@ -110,7 +117,7 @@ If $S, T$ are disjoint subsets of $V$ where $G=(V,E)$ is a graph,
 A {\em complete minor} of $G=(V,E)$ is a collection ${\mathcal S}$ 
 of {\em connected}, non-empty, subsets of $V$ such that
 \begin{enumerate}
-	\item whenever $S\neq T\in {\mathcal S}$ then $S\cap T = \emptyset$, and
+	\item whenever $S\neq T\in {\mathcal S}$ then $S\cap T = \varnothing$, and
 	\item whenever $S\neq T\in {\mathcal S}$ then $S, T$ are connected
 		to each other.
 \end{enumerate}
@@ -130,7 +137,7 @@ chromatic number $\chi(G)$ of a graph, and its Hadwiger number:
 Some remarks:
 
 \begin{enumerate}
-\item As soon as $E \neq \emptyset$ for a graph $G=(V,E)$,
+\item As soon as $E \neq \varnothing$ for a graph $G=(V,E)$,
 	we have $\eta(G) \geq 2.$
 \item Note that even for $\chi(G)=2$, the value of $\eta(G)$ can 
 	be arbitrarily large: Let $\kappa\geq 2$ be a cardinal (finite
@@ -178,7 +185,7 @@ $G_0$ is critical.
 {\em Proof.} Otherwise, take $v\in V$ with $\chi(G_0\setminus 
 \{v\} = \chi(G_0)$.
 Then $\eta(G_0\setminus\{v\}) \leq \eta(G_0) < \chi(G_0) = \chi(G_0
-	\setminus\{v\}$ so that $G_0\setminus \{v\}$ is
+	\setminus\{v\})$ so that $G_0\setminus \{v\}$ is
 	another counterexample to Hadwiger with $|V\setminus\{v\}| =
 	n_0-1 < n_0$, contradicting minimality of $n_0$. 
 	\hfill{$\Box$}
@@ -188,10 +195,26 @@ Note that every critical graph is connected.
 Now we revisit contractions (see ``Basic notions''). 
 
 Let $v\neq w\in V$ such that $\{v,w\}\notin E$.
+
 \begin{proposition}
 If $G$ is any graph and $v\neq w\in V$ with $\{v,w\}\notin E$, then
 	$$\chi(G/\{v,w\}) \geq \chi(G).$$
 \end{proposition}
+{\em Proof.} Suppose that $G$ is a graph on at least $2$ vertices and $v,w\in V$ with
+$\{v,w\}\notin E$. Suppose $n=\chi(G)$. If $n=1$ then $G$ consists of isolated
+vertices only (that is $E = \varnothing$), and so does $G/\{v,w\}$, so
+the claim of the proposition is trivially true.
+
+Suppose $n=\chi(G) > 1$ and suppose that there is a coloring 
+$c:V(G)\setminus \{w\} \to \{1,\ldots, n-1\}$. Define
+a map $c':V(G) \to \{1,\ldots,n-1\}$ by 
+\begin{itemize}
+	\item $w\mapsto c(v)$, and
+	\item if $x\in V\setminus\{w\}$ then $x \mapsto c(x)$.
+\end{itemize}
+Then $c':V(G) \to \{1,\ldots,n-1\}$ is a coloring of $G$ by the definition of 
+contraction (see section \ref{point_contraction}), contradicting $\chi(G) = n$.
+\hfill{$\Box$}
 
 Let's go back to our minimal Hadwiger counterexample $G_0$.
 
@@ -203,13 +226,26 @@ $\eta(G_0/\{v,w\}) > \eta(G_0)$.
 $\chi(G_0/\{v,w\} \geq \chi(G_0)$ we get $\eta(G_0/\{v,w\}) < 
 \chi(G_0/\{v,w\})$, so $G_0/\{v,w\}$ is a Hadwiger counterexample
 with a smaller number of vertices than $G_0$, contradicting minimality.
-\hfill{$\Box$}.
+\hfill{$\Box$}
 
 \begin{proposition} \label{edgeprop}
 If $G=(V,E)$ is any graph and $v\neq w\in V$ with $\{v,w\} \notin E$,
-then $$\eta(G/\{v,w\}) \leq \eta(G \cup \{v,w\}),$$
-where $G\cup \{v,w\}$ denotes the graph $(V, E\cup\{v,w\})$.
+	then $$\eta(G/\{v,w\}) \leq \eta(G \cup \big\{\{v,w\}\big\}),$$
+	where $G\cup \{v,w\}$ denotes the graph $(V, E\cup\big\{\{v,w\}\big\})$.
 \end{proposition}
+{\em Proof.} Suppose $m=\eta(G/\{v,w\})$. Let ${\cal S}$ be a collection
+of connected and mutually disjoint subsets of $V(G/\{v,w\}) = V(G) \setminus \{w\}$
+that are pairwise connected to each other. Consider the following case distinction:
+
+{\em Case 1.} There is $S_0\in {\cal S}$ with $v\in S$. Note that since the
+members of ${\cal S}$ are mutually disjoint, no other member of ${\cal S}$ contains
+$v$ as a member. Consider the set $${\cal S}^* = \{S\in {\cal S}: S\neq S_0\}
+\cup\big\{S_0\cup \{w\}\big\}.$$
+Since $\{v,w\}$ is an edge in the new graph $G\cup\big\{\{v,w\}\big\}$, the set
+$S_0\cup \{w\}$ is connected. Moreover, by definition \ref{point_contraction},
+all sets in ${\cal S}^*$ are connected to each other, and we have $|{\cal S}^*| = m$,
+establishing $\eta(G\cup\big\{\{v,w\}\big\}) \geq m = \eta(G/\{v,w\})$.
+\hfill{$\Box$}
 
 Together, propositions \ref{contractprop} and \ref{edgeprop}
 imply that $G_0$ must have the following property:
@@ -218,11 +254,7 @@ imply that $G_0$ must have the following property:
 	Hadwiger number increases.
 \end{quote}
 
-So $G_0$ has property (E), and it is critical. I asked
-Paul Seymour\footnote{Quite a famous combinatorialist, we exchange
-e-mail like once or twice a year} to come up with {\em any} finite 
-critical graph $G_1$ having property (E), and he wrote after
-a while that he wasn't able to.
+So $G_0$ has property (E), and it is critical. 
 
 If some such $G_1$ could be found, this wouldn't refute Hadwiger
 but could give insight as to what kind of examples could be interesting
@@ -230,13 +262,4 @@ regarding Hadwiger.
 
 Any proof that shows no critical graph with property (E) can exist
 would prove the Hadwiger conjecture.
-
-%---------------------------
-\section{Extending to hypergraphs?}
-We can define connected hypergraphs, see ``Basic notions'',
-and we can extend the concept of colouring to hypergraphs.
-Maybe we can define a complete minor in a hypergraph.
-
-{\bf Question.} Is there a cool way to formulate Hadwiger's conjecture
-in terms of hypergraphs?
 \end{document}
