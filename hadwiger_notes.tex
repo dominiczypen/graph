@@ -237,7 +237,8 @@ If $G=(V,E)$ is any graph and $v\neq w\in V$ with $\{v,w\} \notin E$,
 of connected and mutually disjoint subsets of $V(G/\{v,w\}) = V(G) \setminus \{w\}$
 that are pairwise connected to each other. Consider the following case distinction:
 
-{\em Case 1.} There is $S_0\in {\cal S}$ with $v\in S$. Note that since the
+{\em Case 1.} There is $S_0\in {\cal S}$ with $v\in S$, 
+that is $v\in \bigcup{\cal S}$. Note that since the
 members of ${\cal S}$ are mutually disjoint, no other member of ${\cal S}$ contains
 $v$ as a member. Consider the set $${\cal S}^* = \{S\in {\cal S}: S\neq S_0\}
 \cup\big\{S_0\cup \{w\}\big\}.$$
@@ -245,6 +246,13 @@ Since $\{v,w\}$ is an edge in the new graph $G\cup\big\{\{v,w\}\big\}$, the set
 $S_0\cup \{w\}$ is connected. Moreover, by definition \ref{point_contraction},
 all sets in ${\cal S}^*$ are connected to each other, and we have $|{\cal S}^*| = m$,
 establishing $\eta(G\cup\big\{\{v,w\}\big\}) \geq m = \eta(G/\{v,w\})$.
+
+{\em Case 2.} $v \in V \setminus (\bigcup {\cal S})$. Then by 
+definition \ref{point_contraction} we have that ${\cal S}$ is already
+a collection of connected sets of $G = (V,E)$ consisting of sets
+pairwise connected to each other - and the same holds true
+for $(V, E\cup\big\{\{v,w\}\big\})$. Since $|{\cal S}| = m$ this again 
+establishes $\eta(G\cup\big\{\{v,w\}\big\})\geq m$.
 \hfill{$\Box$}
 
 Together, propositions \ref{contractprop} and \ref{edgeprop}
