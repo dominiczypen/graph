@@ -9,6 +9,7 @@
 \newtheorem{lemma}{\bf Lemma}[section]
 \newtheorem{definition}[lemma]{\bf Definition}
 \newtheorem{proposition}[lemma]{\bf Proposition}
+\newtheorem{observation}[lemma]{\bf Observation}
 %-------------- "let" substitution part! -------------
 \let\cal\mathcal
 \let\emptyset\varnothing
@@ -18,8 +19,6 @@
 \begin{document}
 \title{Some notes on the Hadwiger conjecture}
 \author{Dominic van der Zypen, \today}
-\address{Federal office of border and customs security, Taubenstrasse 16,
-CH-3003 Bern, Switzerland}
 \email{dominic.zypen@gmail.com}
 %----------------------
 \maketitle
@@ -237,8 +236,7 @@ If $G=(V,E)$ is any graph and $v\neq w\in V$ with $\{v,w\} \notin E$,
 of connected and mutually disjoint subsets of $V(G/\{v,w\}) = V(G) \setminus \{w\}$
 that are pairwise connected to each other. Consider the following case distinction:
 
-{\em Case 1.} There is $S_0\in {\cal S}$ with $v\in S$, 
-that is $v\in \bigcup{\cal S}$. Note that since the
+{\em Case 1.} There is $S_0\in {\cal S}$ with $v\in S$. Note that since the
 members of ${\cal S}$ are mutually disjoint, no other member of ${\cal S}$ contains
 $v$ as a member. Consider the set $${\cal S}^* = \{S\in {\cal S}: S\neq S_0\}
 \cup\big\{S_0\cup \{w\}\big\}.$$
@@ -246,13 +244,6 @@ Since $\{v,w\}$ is an edge in the new graph $G\cup\big\{\{v,w\}\big\}$, the set
 $S_0\cup \{w\}$ is connected. Moreover, by definition \ref{point_contraction},
 all sets in ${\cal S}^*$ are connected to each other, and we have $|{\cal S}^*| = m$,
 establishing $\eta(G\cup\big\{\{v,w\}\big\}) \geq m = \eta(G/\{v,w\})$.
-
-{\em Case 2.} $v \in V \setminus (\bigcup {\cal S})$. Then by 
-definition \ref{point_contraction} we have that ${\cal S}$ is already
-a collection of connected sets of $G = (V,E)$ consisting of sets
-pairwise connected to each other - and the same holds true
-for $(V, E\cup\big\{\{v,w\}\big\})$. Since $|{\cal S}| = m$ this again 
-establishes $\eta(G\cup\big\{\{v,w\}\big\})\geq m$.
 \hfill{$\Box$}
 
 Together, propositions \ref{contractprop} and \ref{edgeprop}
@@ -270,4 +261,53 @@ regarding Hadwiger.
 
 Any proof that shows no critical graph with property (E) can exist
 would prove the Hadwiger conjecture.
+%----------------------
+\section{Hadwiger for hypergraphs}
+
+Let $H=(V,E)$ where $V$ is a set and $E\subseteq {\cal P}(V)$. 
+
+We say that $S\subseteq V$ is {\em connected} if for every nonempty 
+$X\subseteq S$ with $X\neq S$ there is $e\in E$ such that 
+$$(e\cap S) \cap X \neq \emptyset\text{ and }
+(e\cap S)\setminus X\neq \emptyset.$$
+
+If $S, T\subseteq V$ are nonempty and disjoint, we say that $S, T$ are
+{\em connected to each other} if there is $e\in E$ with $$e\cap S \neq \emptyset
+\text{ and } e\cap T \neq \emptyset.$$
+
+The {\sl
+weak Hadwiger conjecture for hypergraphs} states that:
+\begin{quote}
+	(WHC): Suppose $\kappa\neq\emptyset$ is a cardinal such that for every map $c:V\to\kappa$
+	there is $e\in E$ with $|e|\geq 2$ and $c|_e:e\to \kappa$ is constant. Then
+	there is ${\cal S}\subseteq {\cal P}(V)$ such that 
+        \begin{enumerate}
+		\item $|{\cal S}| =\kappa$,
+		\item every member of ${\cal S}$ is connected, and
+		\item whenever $T_0, T_1\in {\cal S}$ with $T_0\neq T_1$, then
+			$T_0, T_1$ are connected to each other.
+	\end{enumerate}
+\end{quote}
+\subsection{``Graphs = hypergraphs'' in the Weak Hadwiger context}
+
+\begin{observation} {\em
+	(WHC) is equivalent to (WHC) restricted to graphs (= hypergraphs
+	in which every edge has size $2$).}
+\end{observation}
+{\em Proof.} One direction is evident. So we assume that (WHC) restricted to graphs hold.
+Let $H=(V, E)$ be a hypergraph and 
+	suppose $\kappa\neq\emptyset$ is a cardinal such that for every map $c:V\to\kappa$
+	there is $e\in E$ with $|e|\geq 2$ and $c|_e:e\to \kappa$ is constant.
+	
+Consider the graph $G(H) :=(V, E_2)$ where $$E_2 = \bigcup \{[e]^2: e\in E\}.$$
+
+Let $c:V\to \kappa$ be any map. We know that there is $e_0\in E$ with $|e_0|\geq 2$ and 
+$c|_{e_0}$ is constant. Pick any distinct $x,y\in e_0$. So $\{x,y\}\in E_2$ and $c|_{\{x,y\}}$
+is constant. Since $c: V\to \kappa$ was arbitrary, we can apply (WHC) restricted to graphs
+to the graph $G(H) = (V, E_2)$ and get a set ${\cal S}\subseteq {\cal P}(V)$ of cardinality
+$\kappa$ and obeying the three requirements noted in the definition of (WHC) above.
+
+Finally, it is easy to check that every member of ${\cal S}$ is connected in the hypergraph
+$H=(V, E)$, and every two distinct members of ${\cal S}$ are connected to each other in that 
+hypergraph.\hfill{$\Box$}
 \end{document}
