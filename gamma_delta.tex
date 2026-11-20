@@ -1,0 +1,216 @@
+\documentclass[12pt]{amsart}
+\usepackage{amsthm}
+\usepackage{url}
+\newtheorem{lemma}{\bf Lemma}[section]
+\newtheorem{proposition}[lemma]{\bf Proposition}
+\newtheorem{theorem}[lemma]{\bf Theorem}
+\newtheorem{observation}[lemma]{\bf Observation}
+\newtheorem{definition}[lemma]{\bf Definition}
+%------------
+\gdef\cal{\mathcal}
+\gdef\frak{\mathfrak}
+\gdef\a{\omega}
+%------------
+\parskip = 2mm
+\parindent = 0mm
+
+\begin{document}
+\title{${\Omega \choose \Gamma}\text{ and the }\delta\text{-property}$}
+\author{Dominic van der Zypen}
+\address{Federal Office of Borders and Customs Security,
+Taubenstrasse 16, CH-3003 Bern, Switzerland}
+\email{dominic.zypen@gmail.com}
+
+\begin{abstract}
+Gerlits and Nagy \cite{gamma} introduced 
+the selection principle ${\Omega\choose \Gamma}$ as well
+as a weaker limit concept called the $\delta$-property, and asked
+if they are equivalent. We give a thorough introduction
+to the concepts needed to understand this question and provide
+a positive answer.
+\end{abstract}
+
+\maketitle
+%-----------------
+\section{Set limits and covers}
+% -  -  -  -  -  -
+\subsection{Set limits} For a sequence of subsets $(X_n)_{n\in\mathbb{N}}$
+of a set $X$, we define its {\em (lower) limit} by setting 
+$$\liminf X_n = \bigcup_m\bigcap_{n\geq m}X_n.$$
+
+% -  -  -  -  -  -
+\subsection{Covers of a topological space}
+Throughout this note, let $(X,\tau)$ be a non-empty topological space.
+\begin{definition} \label{covdef}
+ We say that ${\cal U} \subseteq \tau$ is an {\em open cover}, or
+  {\em cover} for short, if \begin{enumerate}
+    \item $X\notin {\cal U}$,
+    \item $\bigcup {\cal U} = X$.
+  \end{enumerate}
+\end{definition}
+For $x\in X$ we set ${\cal U}_x = \{U \in {\cal U}:
+x\in U\}$ and call ${\cal U}_x$ the
+{\em star} of $x$ (with respect to ${\cal U}$).
+\begin{definition}
+	We call a cover ${\cal U}\subseteq (\tau\setminus\{X\})$
+\begin{enumerate}
+  %\item {\em large} if ${\cal U}_x$ is infinite for every $x\in X$,
+  \item an $\omega$-cover if every finite subset of $X$ is contained
+    in some member of ${\cal U}$,
+  \item a $\gamma$-cover if ${\cal U}$ is infinite, and
+    for every $x\in X$ the set ${\cal U}
+    \setminus {\cal U}_x$ is finite.
+\end{enumerate}
+\end{definition}
+Let $\Omega$ and $\Gamma$ denote the collections
+of (open) $\omega$-covers and $\gamma$-covers, respectively. 
+
+%  -  -  -  -  -  -
+\subsection{The selection principle} Let ${\mathfrak U}, {\mathfrak V}$ be
+families of covers of $X$. We define the property ${{\frak U}\choose
+{\frak V}}$, read ``$\frak U$ choose $\frak V$'', as follows:
+
+\begin{quote}
+  ${{\frak U}\choose {\frak V}}\; :$ For each ${\cal U}\in {\frak U}$
+  there is ${\cal V}\subseteq {\cal U}$ such that ${\cal V}\in {\frak V}$.
+\end{quote}
+
+\subsection{The $\delta$-property} We say that a topological
+space $(X,\tau)$ has the $\delta$-{\em property} if 
+for every $\omega$-cover ${\cal U}$ of $X$ there is a sequence
+$(U_n)_{n\in\mathbb{N}}$ of members of ${\cal U}$ such that 
+$$X = \liminf U_n = \bigcup_m\bigcap_{n\geq m} U_n.$$
+
+%-----------------
+\section{Main result}
+Whenever a space $X$ satisfies ${\Omega\choose \Gamma}$, it has
+the $\delta$-property (see \cite{gamma} and \cite{spm}), 
+so the $\delta$-property
+implies ${\Omega\choose\Gamma}$. This gives rise
+to the 
+
+{\bf Question} (Gerlits-Nagi \cite{gamma}). Is the $\delta$-property
+equivalent to ${\Omega\choose\Gamma}$?
+
+%- - - - - - -
+\subsection{Strategy} If we have a space $X$ with the $\delta$-property,
+and an $\omega$-cover ${\cal U}$, we get a sequence 
+$(U_n)_{n\in\mathbb{N}}$ of members of ${\cal U}$ 
+such that $$\liminf U_n = \bigcup_m\bigcap_{n\geq m}U_n = X.$$ 
+We want to find
+a subcover ${\cal U}^*\subseteq {\cal U}$ such that 
+${\cal U}^*$ is a $\gamma$-cover of $X$, with the aim
+to establish ${\Omega\choose \Gamma}$. The idea is to pick 
+$${\cal U}^* = \{U_n:n\in\mathbb{N}\}.$$
+In order to prove that ${\cal U}^*$ is a $\gamma$-cover, we need to show
+that 
+\begin{enumerate}
+\item ${\cal U}^*$ is a cover, 
+\item ${\cal U}^*$ is infinite, and
+\item ${\cal U}^*\setminus {\cal U}^*_x$ is finite for all $x\in X$.
+\end{enumerate}
+Then we can conclude that every $\omega$-cover contains a $\gamma$-cover
+and conclude that ${\Omega\choose\Gamma}$ holds.
+
+The next two lemmas take care of tasks (1) and (2).
+
+\begin{lemma}\label{omegalemma}
+	If $(X,\tau)$ is a topological space having an $\omega$-cover 
+	${\cal W}$ (that is, ${\cal W}\in \Omega$), 
+	then the base set $X$ is infinite.
+\end{lemma}
+{\em Proof.} If $X$ were finite, then since ${\cal W}$ is an $\omega$-cover,
+there is $W_0\in {\cal W}$ with $X\subseteq W_0$. As $V\subseteq X$ for every
+$V\in {\cal W}$, we get $W_0 = X\in {\cal W}$, contradicting the definition of a cover
+as in \ref{covdef}. \hfill{$\Box$}
+
+\begin{lemma}\label{gammalemma}
+Let $(X,\tau)$ be a space with an $\omega$-cover ${\cal W}$.
+Suppose that there is a sequence $(U_n)_{n\in\mathbb{N}}$
+of elements of ${\cal W}$ such that $X =\liminf U_n$.
+Set ${\cal U}^* := \{U_n:n\in \omega\}$. Then
+\begin{enumerate}
+\item ${\cal U}^*$ is a cover, 
+\item ${\cal U}^*$ is infinite.
+\end{enumerate}
+\end{lemma}
+{\em Proof.} (1) This follows directly from $X = \bigcup_m\bigcap_{n\geq m}U_n$.
+
+(2) 
+Recall that we know from lemma \ref{omegalemma} that the base set
+$X$ itself is infinite. 
+
+Suppose that ${\cal U}^* := \{U_n:n\in \omega\}$ were finite.
+That means that ${\cal U}^*=\{U_{n_0},U_{n_1},\ldots, U_{n_k}\}$ for some
+indices $n_0,\ldots,n_k$. There is at least one $j\in\{0,\ldots,k\}$ such that 
+$U_{n_j}$ appears infinitely often in the sequence $(U_n)_{n\in\mathbb{N}}$. 
+By the definition of a cover (\ref{covdef}), we have $U_{n_j} \neq X$, so pick 
+$x_0\in X\setminus U_{n_j}$. As
+$U_{n_j}$ appears infinitely often in the sequence $(U_n)_{n\in\mathbb{N}}$,
+we get $$x_0\notin \bigcup_m\bigcap_{n\geq m}U_n=\liminf U_n,$$
+contradicting $X = \liminf U_n$. So ${\cal U}^*$ is infinite.\hfill{$\Box$}
+
+%\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+\begin{theorem}\label{main}
+Let $(X,\tau)$ be a topological space. Then $X$ has
+the $\delta$-property if and only if it 
+satisfies ${\Omega\choose\Gamma}$.
+\end{theorem}
+%\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
+{\it Proof.}
+
+$\Leftarrow:$ Established in \cite{gamma}.
+
+$\Rightarrow:$ 
+
+{\sl Case 1.} $\Omega = \emptyset$. If $(X,\tau)$ has no $\omega$-cover,
+then ${\Omega\choose\Gamma}$ holds vacuously.
+
+{\sl Case 2:} $\Omega\neq\emptyset$. 
+Let ${\cal U}$ be an open $\omega$-cover of $(X,\tau)$.
+By assumption $(X,\tau)$ has the $\delta$-property, so 
+there is a sequence $(U_n)_{n\in\mathbb{N}}$ of members of ${\cal U}$
+such that $$X = \liminf U_n=\bigcup_m\bigcap_{n\geq m}U_n.$$ 
+This means that
+\begin{quote}
+$(\star)$ for every $x\in X$ there is $m\in \mathbb{N}$ such that
+$x\in U_n$ for all $n\geq m$.
+\end{quote}
+Let ${\cal U}^* = \{U_n: n\in\mathbb{N}\}$. 
+
+We want to show that ${\cal U}^*$ is a $\gamma$-cover.
+
+First, by lemma \ref{gammalemma}, we know that ${\cal U}^*$ 
+is a cover of $X$, and moreover the same lemma establishes
+that ${\cal U}^*$ is infinite.
+
+Second, we want to establish that ${\cal U}^*\setminus {\cal U}^*_x$
+is finite for all $x\in X$.  Let $x\in X$ be an arbitrary
+element. By $(\star)$, there is $m\in \mathbb{N}$
+such that $x\in U_n$ for all $n\geq m$. Therefore $${\cal U}^*_x \supseteq
+\{U_n: n\geq m\}.$$ This implies
+$$\big({\cal U}^*\setminus {\cal U}^*_x\big) \subseteq \big\{U_0, U_1,\ldots, 
+U_{m}\big\},$$ therefore ${\cal U}^*\setminus {\cal U}^*_x$ is finite.
+
+So we have shown that ${\cal U}^*$ is a $\gamma$-cover.
+
+Taking stock, for any $\omega$-cover ${\cal U}$ we found a $\gamma$-cover
+${\cal U}^*\subseteq {\cal U}$, and we conclude that the property 
+${\Omega\choose\Gamma}$ holds.
+\hfill{$\Box$}
+
+{\bf AI disclosure.} AI has not been used at any stage of the writing
+of this note.
+
+%-------------------
+\begin{thebibliography}{9}
+  \bibitem{gamma} J.~Gerlits and Zs.~Nagy, {\it Some properties of
+    $C(X)$, I}, Topology and its Applications {\bf 14} (1982), 151–161.
+  \bibitem{sakai} M.~Sakai, {\it Special subsets of reals characterizing
+	  local properties of function spaces} in {\bf Selection Principles
+		and Covering Properties in Topology} (L.~Ko\v{c}inac, ed.)
+		Quaderni di Matematica {\bf 18} (2007), 195-225.
+  \bibitem{spm} Boaz Tsaban, {\it SPM (Selection Principles in Mathematics)
+	  bulletin No.~23} (2008), \url{https://arxiv.org/pdf/0801.3181}
+\end{thebibliography}
+\end{document}
